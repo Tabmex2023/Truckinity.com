@@ -48,16 +48,24 @@
         <img src="assets/logo.png" alt="Truckinity – Drivers United" class="logo">
     </div>
 
-    <div class="language-dropdown">
-        <div class="current-lang" onclick="toggleLangMenu()">
-            🌍 <span id="currentLanguage">Deutsch</span>
+    <div class="header-right">
+        
+        <div class="language-dropdown">
+            <div class="current-lang" onclick="toggleLangMenu()">
+                🌍 <span id="currentLanguage">Deutsch</span>
+            </div>
+
+            <div class="lang-menu" id="langMenu">
+                <div onclick="setLanguage('de')">🇩🇪 Deutsch</div>
+                <div onclick="setLanguage('en')">🇬🇧 English</div>
+                <div onclick="setLanguage('ru')">🇷🇺 Русский</div>
+            </div>
         </div>
 
-        <div class="lang-menu" id="langMenu">
-            <div onclick="setLanguage('de')">🇩🇪 Deutsch</div>
-            <div onclick="setLanguage('en')">🇬🇧 English</div>
-            <div onclick="setLanguage('ru')">🇷🇺 Русский</div>
+        <div class="auth-section">
+            <button id="loginBtn" class="login-btn">Login</button>
         </div>
+
     </div>
 
 </header>
