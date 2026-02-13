@@ -39,7 +39,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
+<script type="module">
+  // Firebase App und Auth importieren
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+  // Firebase Config aus deinem Projekt
+  const firebaseConfig = {
+    apiKey: "AIzaSyD2RHKOn6gaQmQ-AqJTvD2E5vsLp9z54h0",
+    authDomain: "truckinity.firebaseapp.com",
+    projectId: "truckinity",
+    storageBucket: "truckinity.firebasestorage.app",
+    messagingSenderId: "150787942012",
+    appId: "1:150787942012:web:47214cfb6f3fb1c66c0bf9",
+    measurementId: "G-P2S4B6N6PR"
+  };
+
+  // Firebase initialisieren
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Login Button
+  const loginBtn = document.getElementById("loginBtn");
+
+  loginBtn.addEventListener("click", () => {
+      // Einfaches Prompt Login (später Modal)
+      const email = prompt("Email:");
+      const password = prompt("Passwort:");
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Erfolgreich eingeloggt: " + userCredential.user.email);
+        })
+        .catch((error) => {
+          alert("Login fehlgeschlagen: " + error.message);
+        });
+  });
+
+  // Auth State beobachten
+  onAuthStateChanged(auth, (user) => {
+      if (user) {
+          loginBtn.textContent = "Logout";
+          loginBtn.onclick = () => {
+              signOut(auth).then(() => {
+                  alert("Erfolgreich ausgeloggt!");
+                  loginBtn.textContent = "Login";
+              });
+          };
+      } else {
+          loginBtn.textContent = "Login";
+      }
+  });
+
+</script>
 <body>
 
 <header class="main-header">
