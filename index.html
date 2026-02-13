@@ -18,16 +18,9 @@
 <!-- ICONS -->
 <!-- ========================= -->
 
-<!-- Browser Icon -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/logo-32.png">
-
-<!-- Apple iOS Icon -->
 <link rel="apple-touch-icon" sizes="192x192" href="assets/logo-192.png">
-
-<!-- PWA Manifest -->
 <link rel="manifest" href="manifest.json">
-
-<!-- iOS PWA Support -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Truckinity">
@@ -39,100 +32,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
-  <script>
-// Modal Elemente
-const authModal = document.getElementById('authModal');
-const loginBtn = document.getElementById('loginBtn');
-const closeModal = document.getElementById('closeModal');
-const switchMode = document.getElementById('switchMode');
-const modalTitle = document.getElementById('modalTitle');
-const authSubmit = document.getElementById('authSubmit');
-let isLogin = true;
-
-// Öffnen
-loginBtn.addEventListener('click', () => {
-    authModal.style.display = 'block';
-});
-
-// Schließen
-closeModal.addEventListener('click', () => {
-    authModal.style.display = 'none';
-});
-
-// Schließen beim Klick außerhalb
-window.addEventListener('click', (e) => {
-    if(e.target === authModal) authModal.style.display = 'none';
-});
-
-// Login / Register Modus wechseln
-switchMode.addEventListener('click', () => {
-    isLogin = !isLogin;
-    if(isLogin){
-        modalTitle.textContent = 'Login';
-        authSubmit.textContent = 'Login';
-        switchMode.textContent = 'Registrieren';
-    } else {
-        modalTitle.textContent = 'Registrieren';
-        authSubmit.textContent = 'Registrieren';
-        switchMode.textContent = 'Login';
-    }
-});
-</script>
-<script type="module">
-  // Firebase App und Auth importieren
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-  // Firebase Config aus deinem Projekt
-  const firebaseConfig = {
-    apiKey: "AIzaSyD2RHKOn6gaQmQ-AqJTvD2E5vsLp9z54h0",
-    authDomain: "truckinity.firebaseapp.com",
-    projectId: "truckinity",
-    storageBucket: "truckinity.firebasestorage.app",
-    messagingSenderId: "150787942012",
-    appId: "1:150787942012:web:47214cfb6f3fb1c66c0bf9",
-    measurementId: "G-P2S4B6N6PR"
-  };
-
-  // Firebase initialisieren
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  // Login Button
-  const loginBtn = document.getElementById("loginBtn");
-
-  loginBtn.addEventListener("click", () => {
-      // Einfaches Prompt Login (später Modal)
-      const email = prompt("Email:");
-      const password = prompt("Passwort:");
-
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          alert("Erfolgreich eingeloggt: " + userCredential.user.email);
-        })
-        .catch((error) => {
-          alert("Login fehlgeschlagen: " + error.message);
-        });
-  });
-
-  // Auth State beobachten
-  onAuthStateChanged(auth, (user) => {
-      if (user) {
-          loginBtn.textContent = "Logout";
-          loginBtn.onclick = () => {
-              signOut(auth).then(() => {
-                  alert("Erfolgreich ausgeloggt!");
-                  loginBtn.textContent = "Login";
-              });
-          };
-      } else {
-          loginBtn.textContent = "Login";
-      }
-  });
-
-</script>
 <body>
 
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
 <header class="main-header">
 
     <div class="logo-container">
@@ -141,11 +45,11 @@ switchMode.addEventListener('click', () => {
 
     <div class="header-right">
         
+        <!-- Sprache Dropdown -->
         <div class="language-dropdown">
             <div class="current-lang" onclick="toggleLangMenu()">
                 🌍 <span id="currentLanguage">Deutsch</span>
             </div>
-
             <div class="lang-menu" id="langMenu">
                 <div onclick="setLanguage('de')">🇩🇪 Deutsch</div>
                 <div onclick="setLanguage('en')">🇬🇧 English</div>
@@ -153,6 +57,7 @@ switchMode.addEventListener('click', () => {
             </div>
         </div>
 
+        <!-- Login / Logout -->
         <div class="auth-section">
             <button id="loginBtn" class="login-btn">Login</button>
         </div>
@@ -161,12 +66,18 @@ switchMode.addEventListener('click', () => {
 
 </header>
 
+<!-- ========================= -->
+<!-- HERO -->
+<!-- ========================= -->
 <section class="hero">
     <h1 data-i18n="hero_title"></h1>
     <p data-i18n="hero_subtitle"></p>
     <a href="#" class="cta" data-i18n="hero_button"></a>
 </section>
 
+<!-- ========================= -->
+<!-- FEATURES -->
+<!-- ========================= -->
 <section class="features">
     <div class="card">
         <h3 data-i18n="feature1_title"></h3>
@@ -182,12 +93,16 @@ switchMode.addEventListener('click', () => {
     </div>
 </section>
 
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
 <footer>
     <p>© 2026 Truckinity – Drivers United</p>
 </footer>
 
-<script src="js/app.js"></script>
-<!-- ===== LOGIN / REGISTER MODAL ===== -->
+<!-- ========================= -->
+<!-- LOGIN / REGISTER MODAL -->
+<!-- ========================= -->
 <div id="authModal" class="modal">
   <div class="modal-content">
     <span class="close-btn" id="closeModal">&times;</span>
@@ -205,7 +120,12 @@ switchMode.addEventListener('click', () => {
 
     <p id="authError" style="color: var(--accent-orange);"></p>
   </div>
-  <script type="module">
+</div>
+
+<!-- ========================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================= -->
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } 
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -225,54 +145,68 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Formular Elemente
+// Modal Elemente
+const authModal = document.getElementById('authModal');
+const loginBtn = document.getElementById('loginBtn');
+const closeModal = document.getElementById('closeModal');
+const switchMode = document.getElementById('switchMode');
+const modalTitle = document.getElementById('modalTitle');
+const authSubmit = document.getElementById('authSubmit');
 const authForm = document.getElementById('authForm');
 const authEmail = document.getElementById('authEmail');
 const authPassword = document.getElementById('authPassword');
 const authError = document.getElementById('authError');
+let isLogin = true;
 
-// Formular Submit
+// Modal öffnen / schließen
+loginBtn.addEventListener('click', () => { authModal.style.display = 'block'; });
+closeModal.addEventListener('click', () => { authModal.style.display = 'none'; });
+window.addEventListener('click', (e) => { if(e.target === authModal) authModal.style.display = 'none'; });
+
+// Login / Register Modus wechseln
+switchMode.addEventListener('click', () => {
+    isLogin = !isLogin;
+    if(isLogin){
+        modalTitle.textContent = 'Login';
+        authSubmit.textContent = 'Login';
+        switchMode.textContent = 'Registrieren';
+    } else {
+        modalTitle.textContent = 'Registrieren';
+        authSubmit.textContent = 'Login';
+        switchMode.textContent = 'Login';
+    }
+});
+
+// Formular Submit (Firebase Auth)
 authForm.addEventListener('submit', (e) => {
     e.preventDefault();
     authError.textContent = '';
-
     const email = authEmail.value;
     const password = authPassword.value;
 
     if(isLogin){
-        // LOGIN
         signInWithEmailAndPassword(auth, email, password)
-            .then(userCredential => {
-                authModal.style.display = 'none';
-                authForm.reset();
-                loginBtn.textContent = 'Logout';
-            })
-            .catch(error => {
-                authError.textContent = error.message;
-            });
+        .then(userCredential => {
+            authModal.style.display = 'none';
+            authForm.reset();
+        })
+        .catch(error => { authError.textContent = error.message; });
     } else {
-        // REGISTRIEREN
         createUserWithEmailAndPassword(auth, email, password)
-            .then(userCredential => {
-                authModal.style.display = 'none';
-                authForm.reset();
-                loginBtn.textContent = 'Logout';
-            })
-            .catch(error => {
-                authError.textContent = error.message;
-            });
+        .then(userCredential => {
+            authModal.style.display = 'none';
+            authForm.reset();
+        })
+        .catch(error => { authError.textContent = error.message; });
     }
 });
 
-// Auth State überwachen (Login / Logout Button)
+// Auth State überwachen (Login/Logout Button)
 onAuthStateChanged(auth, (user) => {
     if(user){
         loginBtn.textContent = 'Logout';
         loginBtn.onclick = () => {
-            signOut(auth)
-            .then(() => {
-                loginBtn.textContent = 'Login';
-            });
+            signOut(auth).then(() => { loginBtn.textContent = 'Login'; });
         };
     } else {
         loginBtn.textContent = 'Login';
@@ -280,6 +214,8 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 </script>
-</div>
+
+<script src="js/app.js"></script>
+
 </body>
 </html>
