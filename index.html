@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Truckinity – Drivers United. The international network for truck drivers across Europe.">
-<meta name="keywords" content="Truckinity, Drivers United, LKW Netzwerk, Fahrer Community">
-<meta name="author" content="Truckinity">
-<meta name="theme-color" content="#000000">
 <title>Truckinity – Drivers United</title>
-
-<link rel="icon" type="image/png" sizes="32x32" href="assets/logo-32.png">
-<link rel="apple-touch-icon" sizes="192x192" href="assets/logo-192.png">
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Truckinity">
-
 <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo-32.png">
+<link rel="apple-touch-icon" href="assets/logo-192.png">
+<link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
 <header class="main-header">
 
     <div class="logo-container">
@@ -32,7 +20,6 @@
 
     <div class="header-right">
 
-        <!-- Sprache Dropdown -->
         <div class="language-dropdown">
             <div class="current-lang" onclick="toggleLangMenu()">
                 🌍 <span id="currentLanguage">Deutsch</span>
@@ -44,7 +31,6 @@
             </div>
         </div>
 
-        <!-- Login / Logout -->
         <div class="auth-section">
             <button id="loginBtn" class="login-btn">Login</button>
         </div>
@@ -52,14 +38,12 @@
     </div>
 </header>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
     <h1 data-i18n="hero_title"></h1>
     <p data-i18n="hero_subtitle"></p>
     <a href="#" class="cta" data-i18n="hero_button"></a>
 </section>
 
-<!-- ================= FEATURES ================= -->
 <section class="features">
     <div class="card">
         <h3 data-i18n="feature1_title"></h3>
@@ -75,12 +59,11 @@
     </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer>
     <p>© 2026 Truckinity – Drivers United</p>
 </footer>
 
-<!-- ================= LOGIN / REGISTER MODAL ================= -->
+<!-- ===== LOGIN / REGISTER MODAL ===== -->
 <div id="authModal" class="modal">
   <div class="modal-content">
     <span class="close-btn" id="closeModal">&times;</span>
@@ -100,176 +83,6 @@
   </div>
 </div>
 
-<!-- ================= JAVASCRIPT ================= -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-// ================= FIREBASE CONFIG =================
-const firebaseConfig = {
-  apiKey: "AIzaSyD2RHKOn6gaQmQ-AqJTvD2E5vsLp9z54h0",
-  authDomain: "truckinity.firebaseapp.com",
-  projectId: "truckinity",
-  storageBucket: "truckinity.firebasestorage.app",
-  messagingSenderId: "150787942012",
-  appId: "1:150787942012:web:47214cfb6f3fb1c66c0bf9",
-  measurementId: "G-P2S4B6N6PR"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// ================= ELEMENTS =================
-const authModal = document.getElementById('authModal');
-const loginBtn = document.getElementById('loginBtn');
-const closeModal = document.getElementById('closeModal');
-const authForm = document.getElementById('authForm');
-const authEmail = document.getElementById('authEmail');
-const authPassword = document.getElementById('authPassword');
-const authError = document.getElementById('authError');
-const modalTitle = document.getElementById('modalTitle');
-const authSubmit = document.getElementById('authSubmit');
-const switchMode = document.getElementById('switchMode');
-let isLogin = true;
-
-// ================= MODAL OPEN / CLOSE =================
-loginBtn.addEventListener('click', () => { authModal.style.display = 'block'; });
-closeModal.addEventListener('click', () => { authModal.style.display = 'none'; });
-window.addEventListener('click', (e) => { if(e.target === authModal) authModal.style.display = 'none'; });
-
-// ================= LANGUAGE / TRANSLATIONS =================
-const translations = {
-  de: {
-    hero_title: "Willkommen bei Truckinity",
-    hero_subtitle: "Das internationale Netzwerk für LKW-Fahrer",
-    hero_button: "Jetzt starten",
-    feature1_title: "Finde Parkplätze",
-    feature1_text: "Entdecke sichere und kostenlose Parkplätze entlang deiner Route.",
-    feature2_title: "Community",
-    feature2_text: "Verbinde dich mit anderen Fahrern und teile Tipps.",
-    feature3_title: "Support",
-    feature3_text: "Erhalte Hilfe und Informationen jederzeit.",
-    loginTitle: "Login",
-    registerTitle: "Registrieren",
-    emailPlaceholder: "Email",
-    passwordPlaceholder: "Passwort",
-    submitLogin: "Login",
-    submitRegister: "Registrieren",
-    switchText: "Noch kein Account?",
-    switchBtnLogin: "Login",
-    switchBtnRegister: "Registrieren"
-  },
-  en: {
-    hero_title: "Welcome to Truckinity",
-    hero_subtitle: "The international network for truck drivers",
-    hero_button: "Get Started",
-    feature1_title: "Find Parking",
-    feature1_text: "Discover safe and free parking along your route.",
-    feature2_title: "Community",
-    feature2_text: "Connect with other drivers and share tips.",
-    feature3_title: "Support",
-    feature3_text: "Get help and information anytime.",
-    loginTitle: "Login",
-    registerTitle: "Register",
-    emailPlaceholder: "Email",
-    passwordPlaceholder: "Password",
-    submitLogin: "Login",
-    submitRegister: "Register",
-    switchText: "No account yet?",
-    switchBtnLogin: "Login",
-    switchBtnRegister: "Register"
-  },
-  ru: {
-    hero_title: "Добро пожаловать в Truckinity",
-    hero_subtitle: "Международная сеть для водителей грузовиков",
-    hero_button: "Начать",
-    feature1_title: "Найти парковку",
-    feature1_text: "Найдите безопасные и бесплатные парковки по маршруту.",
-    feature2_title: "Сообщество",
-    feature2_text: "Свяжитесь с другими водителями и делитесь советами.",
-    feature3_title: "Поддержка",
-    feature3_text: "Получите помощь и информацию в любое время.",
-    loginTitle: "Вход",
-    registerTitle: "Регистрация",
-    emailPlaceholder: "Эл. почта",
-    passwordPlaceholder: "Пароль",
-    submitLogin: "Войти",
-    submitRegister: "Регистрация",
-    switchText: "Нет аккаунта?",
-    switchBtnLogin: "Войти",
-    switchBtnRegister: "Регистрация"
-  }
-};
-
-// ================= SET LANGUAGE =================
-function setLanguage(lang){
-  const t = translations[lang];
-  if(!t) return;
-
-  // Update Hero / Features
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if(t[key]) el.textContent = t[key];
-  });
-
-  // Update Modal
-  modalTitle.textContent = isLogin ? t.loginTitle : t.registerTitle;
-  authEmail.placeholder = t.emailPlaceholder;
-  authPassword.placeholder = t.passwordPlaceholder;
-  authSubmit.textContent = isLogin ? t.submitLogin : t.submitRegister;
-  document.getElementById('switchText').innerHTML = `${t.switchText} <span id="switchMode">${isLogin ? t.switchBtnRegister : t.switchBtnLogin}</span>`;
-
-  // Reattach switchMode click
-  document.getElementById('switchMode').addEventListener('click', () => {
-      isLogin = !isLogin;
-      setLanguage(lang);
-  });
-
-  // Update language label
-  document.getElementById('currentLanguage').textContent = lang === 'de' ? 'Deutsch' : lang === 'en' ? 'English' : 'Русский';
-}
-
-// ================= AUTH FORM =================
-authForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    authError.textContent = '';
-    const email = authEmail.value;
-    const password = authPassword.value;
-
-    if(isLogin){
-        signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            authModal.style.display = 'none';
-            authForm.reset();
-        })
-        .catch(error => { authError.textContent = error.message; });
-    } else {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            authModal.style.display = 'none';
-            authForm.reset();
-        })
-        .catch(error => { authError.textContent = error.message; });
-    }
-});
-
-// ================= AUTH STATE =================
-onAuthStateChanged(auth, (user) => {
-    if(user){
-        loginBtn.textContent = 'Logout';
-        loginBtn.onclick = () => { signOut(auth).then(()=>{loginBtn.textContent='Login';}); };
-    } else {
-        loginBtn.textContent = 'Login';
-        loginBtn.onclick = () => { authModal.style.display='block'; };
-    }
-});
-
-// ================= INIT =================
-setLanguage('de'); // Default Sprache
-</script>
-
-<script src="js/app.js"></script>
-
+<script type="module" src="js/app.js"></script>
 </body>
 </html>
