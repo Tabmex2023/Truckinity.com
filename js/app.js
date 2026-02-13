@@ -5,7 +5,7 @@ from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========================
-  // Firebase Setup
+  // Firebase Config
   // ========================
   const firebaseConfig = {
     apiKey: "AIzaSyD2RHKOn6gaQmQ-AqJTvD2E5vsLp9z54h0",
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     appId: "1:150787942012:web:47214cfb6f3fb1c66c0bf9",
     measurementId: "G-P2S4B6N6PR"
   };
+
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const authPassword = document.getElementById('authPassword');
   const authSubmit = document.getElementById('authSubmit');
   const authError = document.getElementById('authError');
+  const joinBtn = document.getElementById('joinBtn');
 
   const currentLangEl = document.getElementById('currentLanguage');
   const langMenu = document.getElementById('langMenu');
@@ -40,13 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentLang = 'de'; // default
 
   // ========================
-  // TEXT-ÜBERSETZUNGEN
+  // i18n Texte
   // ========================
   const i18n = {
     de: {
       hero_title: "Truckinity – Fahrer vereint",
       hero_subtitle: "Finde sichere und kostenlose Parkplätze entlang deiner Route.",
-      hero_button: "Loslegen",
+      hero_button: "Jetzt beitreten",
       feature1_title: "Frei Parken",
       feature1_text: "Sicher parken ohne Gebühren in ganz Europa.",
       feature2_title: "Community",
@@ -57,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     en: {
       hero_title: "Truckinity – Drivers United",
       hero_subtitle: "Find safe and free parking along your route.",
-      hero_button: "Get Started",
+      hero_button: "Join Now",
       feature1_title: "Free Parking",
       feature1_text: "Park safely without fees across Europe.",
       feature2_title: "Community",
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ru: {
       hero_title: "Truckinity – Водители вместе",
       hero_subtitle: "Находите безопасную и бесплатную парковку по маршруту.",
-      hero_button: "Начать",
+      hero_button: "Присоединиться",
       feature1_title: "Бесплатная парковка",
       feature1_text: "Паркуйтесь безопасно без оплаты по всей Европе.",
       feature2_title: "Сообщество",
@@ -79,21 +81,18 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ========================
-  // SPRACHE SETZEN
+  // Sprache setzen
   // ========================
-  function setLanguage(lang) {
+  function setLanguage(lang){
     currentLang = lang;
     currentLangEl.textContent = lang === 'de' ? "🌍 Deutsch" : (lang === 'en' ? "🌍 English" : "🌍 Русский");
-
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       el.textContent = i18n[lang][key];
     });
-
     langMenu.style.display = 'none';
   }
 
-  // Dropdown toggle
   currentLangEl.addEventListener('click', () => {
     langMenu.style.display = langMenu.style.display === 'block' ? 'none' : 'block';
   });
@@ -102,10 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('click', e => setLanguage(e.target.getAttribute('data-lang')));
   });
 
-  setLanguage(currentLang); // initial
+  setLanguage(currentLang);
 
   // ========================
-  // MODAL LOGIN/REGISTER
+  // Modal Login/Register
   // ========================
   loginBtn.addEventListener('click', () => authModal.style.display = 'block');
   closeModal.addEventListener('click', () => authModal.style.display = 'none');
@@ -119,7 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================
-  // AUTH FORM SUBMIT
+  // Join Button = Registrieren
+  // ========================
+  joinBtn.addEventListener('click', () => {
+    isLogin = false;
+    modalTitle.textContent = 'Registrieren';
+    authSubmit.textContent = 'Registrieren';
+    switchMode.textContent = 'Login';
+    authModal.style.display = 'block';
+  });
+
+  // ========================
+  // Auth Formular
   // ========================
   authForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -128,39 +138,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = authPassword.value;
 
     if(isLogin){
-      signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-          authModal.style.display = 'none';
-          authForm.reset();
-          // redirect zur aktuellen Sprache
-          setLanguage(currentLang);
-        })
-        .catch(error => authError.textContent = error.message);
+      signInWithEmailAndPassword(auth,email,password)
+      .then(u => { authModal.style.display='none'; authForm.reset(); setLanguage(currentLang); })
+      .catch(err => authError.textContent = err.message);
     } else {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-          authModal.style.display = 'none';
-          authForm.reset();
-          setLanguage(currentLang);
-        })
-        .catch(error => authError.textContent = error.message);
+      createUserWithEmailAndPassword(auth,email,password)
+      .then(u => { authModal.style.display='none'; authForm.reset(); setLanguage(currentLang); })
+      .catch(err => authError.textContent = err.message);
     }
   });
 
   // ========================
-  // AUTH STATE
+  // Auth State
   // ========================
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth,user => {
     if(user){
       loginBtn.textContent = 'Logout';
       loginBtn.onclick = () => {
-        signOut(auth).then(() => {
-          loginBtn.textContent = 'Login';
-        });
+        signOut(auth).then(()=>{ loginBtn.textContent='Login'; });
       };
     } else {
       loginBtn.textContent = 'Login';
-      loginBtn.onclick = () => authModal.style.display = 'block';
+      loginBtn.onclick = () => authModal.style.display='block';
     }
   });
 
