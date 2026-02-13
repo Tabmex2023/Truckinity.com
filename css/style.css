@@ -233,3 +233,86 @@ footer {
   transform: translateY(-3px);
   box-shadow: 0 0 15px rgba(30,144,255,0.4);
 }
+
+/* ===== LOGIN MODAL ===== */
+.modal {
+  display: none; /* versteckt */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--bg-main);
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #111;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  color: #fff;
+  font-size: 16px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange));
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.modal-content button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(255,122,0,0.5);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+#switchText {
+  margin-top: 15px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+#switchMode {
+  color: var(--accent-orange);
+  cursor: pointer;
+  font-weight: 600;
+}
