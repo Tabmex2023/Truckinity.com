@@ -22,9 +22,14 @@
 }
 
 html, body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(
+      circle at top center,
+      #111827 0%,
+      #000000 60%
+  );
+  color: #ffffff;
 }
 
 /* ===== HEADER ===== */
