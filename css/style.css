@@ -210,3 +210,26 @@ footer {
   }
 
 }
+/* ===== HEADER RIGHT WRAPPER ===== */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ===== LOGIN BUTTON ===== */
+.login-btn {
+  padding: 8px 18px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange));
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(30,144,255,0.4);
+}
