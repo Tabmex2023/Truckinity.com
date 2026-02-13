@@ -37,19 +37,19 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 30px 40px;
   background: #000000;
   border-bottom: 1px solid #111;
 }
 
 .logo {
-  height: 70px;
+  height: 110px;   /* vorher 70px */
   width: auto;
   transition: 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 /* ===== LANGUAGE BUTTONS ===== */
