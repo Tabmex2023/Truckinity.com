@@ -39,6 +39,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
+  <script>
+// Modal Elemente
+const authModal = document.getElementById('authModal');
+const loginBtn = document.getElementById('loginBtn');
+const closeModal = document.getElementById('closeModal');
+const switchMode = document.getElementById('switchMode');
+const modalTitle = document.getElementById('modalTitle');
+const authSubmit = document.getElementById('authSubmit');
+let isLogin = true;
+
+// Öffnen
+loginBtn.addEventListener('click', () => {
+    authModal.style.display = 'block';
+});
+
+// Schließen
+closeModal.addEventListener('click', () => {
+    authModal.style.display = 'none';
+});
+
+// Schließen beim Klick außerhalb
+window.addEventListener('click', (e) => {
+    if(e.target === authModal) authModal.style.display = 'none';
+});
+
+// Login / Register Modus wechseln
+switchMode.addEventListener('click', () => {
+    isLogin = !isLogin;
+    if(isLogin){
+        modalTitle.textContent = 'Login';
+        authSubmit.textContent = 'Login';
+        switchMode.textContent = 'Registrieren';
+    } else {
+        modalTitle.textContent = 'Registrieren';
+        authSubmit.textContent = 'Registrieren';
+        switchMode.textContent = 'Login';
+    }
+});
+</script>
 <script type="module">
   // Firebase App und Auth importieren
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
