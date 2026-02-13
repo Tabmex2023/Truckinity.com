@@ -22,3 +22,21 @@ window.onload = () => {
     const savedLang = localStorage.getItem("language") || "de";
     loadLanguage(savedLang);
 };
+function toggleLangMenu() {
+    const menu = document.getElementById("langMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+function setLanguage(lang) {
+    loadLanguage(lang);
+
+    const languageNames = {
+        de: "Deutsch",
+        en: "English",
+        ru: "Русский"
+    };
+
+    document.getElementById("currentLanguage").textContent = languageNames[lang];
+
+    document.getElementById("langMenu").style.display = "none";
+}
