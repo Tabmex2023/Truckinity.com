@@ -1,5 +1,5 @@
 /* ===============================
-   TRUCK UNITY – DRIVERS UNITED
+   TRUCKINITY – DRIVERS UNITED
    Modern Black Corporate Design
 ================================ */
 
@@ -30,6 +30,7 @@ html, body {
       #000000 60%
   );
   color: #ffffff;
+  scroll-behavior: smooth;
 }
 
 /* ===== HEADER ===== */
@@ -40,10 +41,12 @@ html, body {
   padding: 30px 40px;
   background: #000000;
   border-bottom: 1px solid #111;
+  position: relative;
 }
 
+/* ===== LOGO ===== */
 .logo {
-  height: 110px;   /* vorher 70px */
+  height: 120px;
   width: auto;
   transition: 0.3s ease;
 }
@@ -52,22 +55,46 @@ html, body {
   transform: scale(1.03);
 }
 
-/* ===== LANGUAGE BUTTONS ===== */
-.lang-switch button {
-  background: transparent;
-  border: 1px solid var(--accent-blue);
-  color: var(--accent-blue);
-  padding: 6px 12px;
-  margin-left: 8px;
+/* ===== LANGUAGE DROPDOWN ===== */
+.language-dropdown {
+  position: relative;
   cursor: pointer;
-  transition: 0.3s ease;
-  border-radius: 5px;
-  font-size: 14px;
+  font-weight: 500;
 }
 
-.lang-switch button:hover {
+.current-lang {
+  padding: 10px 15px;
+  border: 1px solid #222;
+  border-radius: 6px;
+  background: #111;
+  transition: 0.3s ease;
+}
+
+.current-lang:hover {
+  border-color: var(--accent-blue);
+}
+
+.lang-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 6px;
+  display: none;
+  flex-direction: column;
+  min-width: 170px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.lang-menu div {
+  padding: 12px 15px;
+  transition: 0.3s ease;
+}
+
+.lang-menu div:hover {
   background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange));
-  border: none;
   color: #fff;
 }
 
@@ -159,7 +186,18 @@ footer {
 
   .main-header {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .logo {
+    height: 90px;
+  }
+
+  .lang-menu {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .hero h1 {
@@ -171,45 +209,4 @@ footer {
     align-items: center;
   }
 
-}
-
-.language-dropdown {
-  position: relative;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.current-lang {
-  padding: 10px 15px;
-  border: 1px solid #222;
-  border-radius: 6px;
-  background: #111;
-  transition: 0.3s ease;
-}
-
-.current-lang:hover {
-  border-color: var(--accent-blue);
-}
-
-.lang-menu {
-  position: absolute;
-  top: 45px;
-  right: 0;
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 6px;
-  display: none;
-  flex-direction: column;
-  min-width: 160px;
-  overflow: hidden;
-}
-
-.lang-menu div {
-  padding: 10px 15px;
-  transition: 0.3s ease;
-}
-
-.lang-menu div:hover {
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange));
-  color: #fff;
 }
