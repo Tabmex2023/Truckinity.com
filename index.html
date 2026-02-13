@@ -205,6 +205,81 @@ switchMode.addEventListener('click', () => {
 
     <p id="authError" style="color: var(--accent-orange);"></p>
   </div>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+// === Firebase Config ===
+const firebaseConfig = {
+  apiKey: "AIzaSyD2RHKOn6gaQmQ-AqJTvD2E5vsLp9z54h0",
+  authDomain: "truckinity.firebaseapp.com",
+  projectId: "truckinity",
+  storageBucket: "truckinity.firebasestorage.app",
+  messagingSenderId: "150787942012",
+  appId: "1:150787942012:web:47214cfb6f3fb1c66c0bf9",
+  measurementId: "G-P2S4B6N6PR"
+};
+
+// Firebase initialisieren
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Formular Elemente
+const authForm = document.getElementById('authForm');
+const authEmail = document.getElementById('authEmail');
+const authPassword = document.getElementById('authPassword');
+const authError = document.getElementById('authError');
+
+// Formular Submit
+authForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    authError.textContent = '';
+
+    const email = authEmail.value;
+    const password = authPassword.value;
+
+    if(isLogin){
+        // LOGIN
+        signInWithEmailAndPassword(auth, email, password)
+            .then(userCredential => {
+                authModal.style.display = 'none';
+                authForm.reset();
+                loginBtn.textContent = 'Logout';
+            })
+            .catch(error => {
+                authError.textContent = error.message;
+            });
+    } else {
+        // REGISTRIEREN
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(userCredential => {
+                authModal.style.display = 'none';
+                authForm.reset();
+                loginBtn.textContent = 'Logout';
+            })
+            .catch(error => {
+                authError.textContent = error.message;
+            });
+    }
+});
+
+// Auth State überwachen (Login / Logout Button)
+onAuthStateChanged(auth, (user) => {
+    if(user){
+        loginBtn.textContent = 'Logout';
+        loginBtn.onclick = () => {
+            signOut(auth)
+            .then(() => {
+                loginBtn.textContent = 'Login';
+            });
+        };
+    } else {
+        loginBtn.textContent = 'Login';
+        loginBtn.onclick = () => { authModal.style.display = 'block'; };
+    }
+});
+</script>
 </div>
 </body>
 </html>
