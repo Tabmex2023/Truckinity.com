@@ -1,203 +1,95 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Truckinity – The International Network for Truck Drivers</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>truckinity – die Truckercommunity</title>
 
-  <link rel="stylesheet" href="css/style.css">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#040431" />
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-    }
+    <!-- Favicon / App Icon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png" />
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background: #1e293b;
-    }
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .top-right {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    select, button {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-    }
-
-    button {
-      background: #2563eb;
-      color: white;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 60px auto;
-      padding: 20px;
-      background: #1e293b;
-      border-radius: 10px;
-    }
-
-    h1 {
-      text-align: center;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    input {
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-    }
-
-    .toggle-link {
-      text-align: center;
-      margin-top: 15px;
-      cursor: pointer;
-      color: #60a5fa;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-<header>
-  <div class="logo">🚛 Truckinity</div>
+<header class="header">
+    <div class="logo-container">
+        <img src="assets/images/logo.png" alt="truckinity Logo" class="logo">
+        <span class="brand-name">truckinity</span>
+    </div>
 
-  <div class="top-right">
-    <select id="languageSelect">
-      <option value="de">🇩🇪 Deutsch</option>
-      <option value="en">🇬🇧 English</option>
-      <option value="ru">🇷🇺 Русский</option>
-    </select>
-  </div>
+    <div class="header-buttons">
+        <a href="login.html" class="btn-outline">Login</a>
+        <a href="register.html" class="btn-primary">Mitglied werden</a>
+    </div>
 </header>
 
-<div class="container">
-  <h1 id="mainTitle">Willkommen bei Truckinity</h1>
+<section class="hero">
+    <h1>Von Fahrer zu Fahrer –<br>die Truckercommunity</h1>
+    <p>
+        Finde sichere LKW-Parkplätze schneller.  
+        Vermeide unnötigen Stress durch Stau und Kontrollen.  
+        Spare Zeit, Geld und Nerven.
+    </p>
+    <a href="register.html" class="btn-primary large">Jetzt Mitglied werden – 9,99€ / Monat</a>
+</section>
 
-  <!-- LOGIN -->
-  <form id="login-form">
-    <input type="email" id="login-email" placeholder="Email" required>
-    <input type="password" id="login-password" placeholder="Passwort" required>
-    <button type="submit">Login</button>
-  </form>
+<section class="problem">
+    <h2>Das Problem</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Überfüllte Raststätten</h3>
+            <p>Kein Parkplatz nach Feierabend? Täglicher Stress auf Deutschlands Autobahnen.</p>
+        </div>
+        <div class="card">
+            <h3>Hohe Parkkosten</h3>
+            <p>Teilweise über 100€ pro Woche nur für sichere Stellplätze.</p>
+        </div>
+        <div class="card">
+            <h3>Unklare Kontrollen</h3>
+            <p>Kontrollen und Staus kosten Zeit, Geld und Nerven.</p>
+        </div>
+    </div>
+</section>
 
-  <!-- REGISTER -->
-  <form id="register-form" class="hidden">
-    <input type="email" id="register-email" placeholder="Email" required>
-    <input type="password" id="register-password" placeholder="Passwort" required>
-    <button type="submit">Registrieren</button>
-  </form>
+<section class="solution">
+    <h2>Die Lösung</h2>
+    <div class="grid">
+        <div class="card highlight">
+            <h3>Parkplatzmeldungen</h3>
+            <p>Fahrer melden freie oder volle Plätze in Echtzeit.</p>
+        </div>
+        <div class="card highlight">
+            <h3>Stau & Kontrolle</h3>
+            <p>Community-basierte Warnungen direkt auf dein Dashboard.</p>
+        </div>
+        <div class="card highlight">
+            <h3>Gamification</h3>
+            <p>Sammle Punkte, erreiche Level und werde Top-Fahrer deiner Region.</p>
+        </div>
+    </div>
+</section>
 
-  <div class="toggle-link" id="toggleForm">
-    Noch kein Konto? Registrieren
-  </div>
-</div>
+<section class="pricing">
+    <h2>Mitgliedschaft</h2>
+    <div class="pricing-box">
+        <h3>9,99€ / Monat</h3>
+        <p>Für Berufskraftfahrer. Jederzeit kündbar.</p>
+        <a href="register.html" class="btn-primary large">Jetzt starten</a>
+    </div>
+</section>
 
-<!-- Firebase -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD2RHKOn6gaQmQ-AqJTvD2E5vsLp9z54h0",
-  authDomain: "truckinity.firebaseapp.com",
-  projectId: "truckinity",
-  storageBucket: "truckinity.appspot.com",
-  messagingSenderId: "150787942012",
-  appId: "1:150787942012:web:47214cfb6f3fb1c66c0bf9"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-/* Auto Redirect wenn eingeloggt */
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    window.location.href = "dashboard.html";
-  }
-});
-
-/* Login */
-document.getElementById("login-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    window.location.href = "dashboard.html";
-  } catch (error) {
-    alert(error.message);
-  }
-});
-
-/* Registrierung */
-document.getElementById("register-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("register-email").value;
-  const password = document.getElementById("register-password").value;
-
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    window.location.href = "dashboard.html";
-  } catch (error) {
-    alert(error.message);
-  }
-});
-
-/* Toggle Login / Register */
-const toggle = document.getElementById("toggleForm");
-const loginForm = document.getElementById("login-form");
-const registerForm = document.getElementById("register-form");
-
-toggle.addEventListener("click", () => {
-  loginForm.classList.toggle("hidden");
-  registerForm.classList.toggle("hidden");
-
-  toggle.innerText = loginForm.classList.contains("hidden")
-    ? "Schon registriert? Login"
-    : "Noch kein Konto? Registrieren";
-});
-
-/* Sprache */
-const translations = {
-  de: "Willkommen bei Truckinity",
-  en: "Welcome to Truckinity",
-  ru: "Добро пожаловать в Truckinity"
-};
-
-document.getElementById("languageSelect").addEventListener("change", (e) => {
-  document.getElementById("mainTitle").innerText =
-    translations[e.target.value];
-});
-</script>
+<footer class="footer">
+    <p>© 2026 truckinity – von Fahrer zu Fahrer</p>
+</footer>
 
 </body>
 </html>
