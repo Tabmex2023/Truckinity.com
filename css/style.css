@@ -89,39 +89,24 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-/* ================= CARD DARK ================= */
+/* ================= CARDS – EINHEITLICH ================= */
 
 .card {
-    padding: 25px;
-    border-radius: 16px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-/* Probleme = dunkler Hintergrund */
-.problem .card {
-    background: var(--card-dark);
-    color: var(--text-light);
-}
-
-/* Lösungen = goldener Hintergrund (Spiegelverkehrt) */
-.solution .card {
-    background: var(--primary);
-    color: var(--bg);
+  padding: 26px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  cursor: pointer;
+  background: var(--bg-card-light);   /* Gold */
+  color: var(--text-dark);            /* Dunkelblau */
 }
 
 .card:hover {
-    transform: translateY(-6px);
+  transform: translateY(-6px);
 }
 
 .card:active {
-    transform: scale(0.96);
+  transform: scale(0.97);
 }
-
-.card h3 {
-    margin-bottom: 12px;
-}
-
 /* ================= PRICING ================= */
 
 .pricing-box {
