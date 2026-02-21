@@ -25,9 +25,19 @@
     </div>
 
     <nav class="header-buttons">
-        <a href="login.html" class="btn-outline">Login</a>
-        <a href="register.html" class="btn-primary">Mitglied werden</a>
-    </nav>
+
+    <div class="auth-buttons">
+        <a href="login.html" class="btn-outline" data-i18n="login"></a>
+        <a href="register.html" class="btn-primary" data-i18n="register"></a>
+    </div>
+
+    <div class="language-switch">
+        <button onclick="setLanguage('de')">DE</button>
+        <button onclick="setLanguage('en')">EN</button>
+        <button onclick="setLanguage('ru')">RU</button>
+    </div>
+
+</nav>
 </header>
 
 <section class="hero reveal">
