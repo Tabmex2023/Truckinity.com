@@ -197,3 +197,25 @@ section {
         padding: 100px 5% 60px 5%;
     }
 }
+
+.language-switch {
+    display: flex;
+    gap: 6px;
+    margin-left: 15px;
+}
+
+.language-switch button {
+    background: transparent;
+    border: 1px solid var(--accent-main);
+    color: var(--accent-main);
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.language-switch button:hover {
+    background: var(--accent-main);
+    color: var(--text-dark);
+}
