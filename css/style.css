@@ -1,8 +1,8 @@
 :root {
     --bg: #040431;
     --primary: #EDC596;
-    --card: #0b0b5e;
-    --text: #ffffff;
+    --card-dark: #0b0b5e;
+    --text-light: #ffffff;
 }
 
 * {
@@ -18,32 +18,23 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: var(--text-light);
 }
+
+/* ================= HEADER ================= */
 
 .header {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 15px 8%;
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(4,4,49,0.95);
+    background: rgba(4,4,49,0.98);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(237,197,150,0.2);
     z-index: 1000;
-}
-
-.logo {
-    height: 45px;
-}
-
-.brand-name {
-    color: var(--primary);
-    font-weight: 800;
-    font-size: 22px;
-    margin-left: 10px;
 }
 
 .logo-container {
@@ -51,16 +42,36 @@ body {
     align-items: center;
 }
 
-section {
-    padding: 120px 8% 80px 8%;
+.logo {
+    height: 40px;
 }
 
+.brand-name {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 20px;
+    margin-left: 8px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* ================= SECTIONS ================= */
+
+section {
+    padding: 120px 5% 80px 5%;
+}
+
+/* Abstand wegen fixed header */
 .hero {
+    padding-top: 150px;
     text-align: center;
 }
 
 .hero h1 {
-    font-size: 42px;
+    font-size: 34px;
     color: var(--primary);
     margin-bottom: 20px;
 }
@@ -70,64 +81,79 @@ section {
     margin: 0 auto 30px;
 }
 
-.section h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: var(--primary);
-}
+/* ================= GRID ================= */
 
 .grid {
     display: grid;
-    gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
+/* ================= CARD DARK ================= */
+
 .card {
-    background: var(--card);
-    padding: 30px;
-    border-radius: 15px;
+    padding: 25px;
+    border-radius: 16px;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
+/* Probleme = dunkler Hintergrund */
+.problem .card {
+    background: var(--card-dark);
+    color: var(--text-light);
+}
+
+/* Lösungen = goldener Hintergrund (Spiegelverkehrt) */
+.solution .card {
+    background: var(--primary);
+    color: var(--bg);
+}
+
 .card:hover {
-    transform: translateY(-8px);
-    border: 1px solid var(--primary);
+    transform: translateY(-6px);
 }
 
 .card:active {
-    transform: scale(0.97);
-    background: #14148f;
+    transform: scale(0.96);
 }
 
 .card h3 {
-    color: var(--primary);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
+
+/* ================= PRICING ================= */
 
 .pricing-box {
     max-width: 400px;
     margin: auto;
-    background: var(--card);
-    padding: 40px;
+    padding: 35px;
     border-radius: 20px;
     text-align: center;
-    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: var(--bg);
     transition: 0.3s;
 }
 
 .pricing-box:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
 }
+
+/* ================= BUTTONS ================= */
 
 .btn-primary {
     background: var(--primary);
     color: var(--bg);
-    padding: 12px 24px;
+    padding: 12px 22px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     transition: 0.3s;
+}
+
+.btn-primary.large {
+    display: inline-block;
+    margin-top: 15px;
 }
 
 .btn-primary:hover {
@@ -137,16 +163,20 @@ section {
 .btn-outline {
     border: 1px solid var(--primary);
     color: var(--primary);
-    padding: 10px 20px;
+    padding: 10px 18px;
     border-radius: 8px;
     text-decoration: none;
 }
+
+/* ================= FOOTER ================= */
 
 .footer {
     text-align: center;
     padding: 30px;
     border-top: 1px solid rgba(237,197,150,0.2);
 }
+
+/* ================= REVEAL ANIMATION ================= */
 
 .reveal {
     opacity: 0;
@@ -157,4 +187,28 @@ section {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ================= MOBILE FIX ================= */
+
+@media (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .header-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    section {
+        padding: 100px 5% 60px 5%;
+    }
 }
