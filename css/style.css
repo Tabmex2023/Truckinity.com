@@ -1,103 +1,194 @@
+/* ===============================
+   TRUCKINITY – GLOBAL STYLE
+   von Fahrer zu Fahrer
+================================ */
+
+/* ========= DESIGN PALETTE ========= */
+
 :root {
-    --bg: #040431;
-    --primary: #EDC596;
-    --card-dark: #0b0b5e;
-    --text-light: #ffffff;
+  --bg-main: #040431;
+  --bg-card-light: #EDC596;
+  --bg-header: rgba(4,4,49,0.96);
+
+  --text-light: #ffffff;
+  --text-dark: #040431;
+  --text-muted: #b7b7c9;
+
+  --accent-main: #EDC596;
+  --accent-border: rgba(237,197,150,0.35);
+
+  --radius: 18px;
+  --transition: all 0.3s ease;
 }
 
+/* ========= RESET ========= */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text-light);
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-light);
+  line-height: 1.6;
 }
 
-/* ================= HEADER ================= */
+/* ========= HEADER ========= */
 
 .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 15px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(4,4,49,0.98);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(237,197,150,0.2);
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--bg-header);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--accent-border);
+  z-index: 1000;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo {
-    height: 40px;
+  height: 40px;
 }
 
 .brand-name {
-    color: var(--primary);
-    font-weight: 800;
-    font-size: 20px;
-    margin-left: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent-main);
 }
+
+/* ========= NAVIGATION ========= */
 
 .header-buttons {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-/* ================= SECTIONS ================= */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* ========= BUTTONS ========= */
+
+.btn-primary {
+  background: var(--accent-main);
+  color: var(--text-dark);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-outline {
+  border: 1px solid var(--accent-main);
+  color: var(--accent-main);
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-primary:hover,
+.btn-outline:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.large {
+  padding: 14px 28px;
+  font-size: 16px;
+}
+
+/* ========= LANGUAGE SWITCH ========= */
+
+.language-switch {
+  display: flex;
+  gap: 6px;
+}
+
+.language-switch button {
+  background: transparent;
+  border: 1px solid var(--accent-main);
+  color: var(--accent-main);
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.language-switch button:hover {
+  background: var(--accent-main);
+  color: var(--text-dark);
+}
+
+/* ========= SECTIONS ========= */
 
 section {
-    padding: 120px 5% 80px 5%;
+  padding: 110px 20px 80px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-/* Abstand wegen fixed header */
 .hero {
-    padding-top: 150px;
-    text-align: center;
+  padding-top: 170px;
+  text-align: center;
 }
 
 .hero h1 {
-    font-size: 34px;
-    color: var(--primary);
-    margin-bottom: 20px;
+  color: var(--accent-main);
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 
 .hero p {
-    max-width: 600px;
-    margin: 0 auto 30px;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 30px auto;
 }
 
-/* ================= GRID ================= */
+/* ========= GRID ========= */
 
 .grid {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
-/* ================= CARDS – EINHEITLICH ================= */
+/* ========= CARDS (Problem + Solution IDENTISCH) ========= */
 
 .card {
   padding: 26px;
   border-radius: var(--radius);
   transition: var(--transition);
   cursor: pointer;
-  background: var(--bg-card-light);   /* Gold */
-  color: var(--text-dark);            /* Dunkelblau */
+  background: var(--bg-card-light);
+  color: var(--text-dark);
 }
 
 .card:hover {
@@ -107,115 +198,105 @@ section {
 .card:active {
   transform: scale(0.97);
 }
-/* ================= PRICING ================= */
+
+/* ========= PRICING ========= */
 
 .pricing-box {
-    max-width: 400px;
-    margin: auto;
-    padding: 35px;
-    border-radius: 20px;
-    text-align: center;
-    background: var(--primary);
-    color: var(--bg);
-    transition: 0.3s;
+  background: var(--bg-card-light);
+  color: var(--text-dark);
+  padding: 36px;
+  border-radius: 22px;
+  text-align: center;
+  max-width: 420px;
+  margin: auto;
+  transition: var(--transition);
 }
 
 .pricing-box:hover {
-    transform: translateY(-6px);
+  transform: translateY(-6px);
 }
 
-/* ================= BUTTONS ================= */
+/* ========= AUTH (Login / Register) ========= */
 
-.btn-primary {
-    background: var(--primary);
-    color: var(--bg);
-    padding: 12px 22px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
+.auth-box {
+  max-width: 420px;
+  margin: 40px auto;
+  background: var(--bg-card-light);
+  color: var(--text-dark);
+  padding: 30px;
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.btn-primary.large {
-    display: inline-block;
-    margin-top: 15px;
+.auth-box label {
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.btn-primary:hover {
-    opacity: 0.85;
+.auth-box input {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
 }
 
-.btn-outline {
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    padding: 10px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-}
-
-/* ================= FOOTER ================= */
+/* ========= FOOTER ========= */
 
 .footer {
-    text-align: center;
-    padding: 30px;
-    border-top: 1px solid rgba(237,197,150,0.2);
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 1px solid var(--accent-border);
+  color: var(--text-muted);
+  margin-top: 60px;
 }
 
-/* ================= REVEAL ANIMATION ================= */
+/* ========= SCROLL REVEAL ========= */
 
 .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.6s ease;
 }
 
 .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* ================= MOBILE FIX ================= */
+/* ========= MOBILE ========= */
 
 @media (max-width: 768px) {
 
-    .header {
-        flex-direction: column;
-        gap: 10px;
-        padding: 15px;
-    }
+  .header-inner {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .header-buttons {
-        width: 100%;
-        justify-content: center;
-    }
+  .header-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .hero h1 {
-        font-size: 26px;
-    }
+  .auth-buttons {
+    gap: 8px;
+  }
 
-    section {
-        padding: 100px 5% 60px 5%;
-    }
-}
+  .hero {
+    padding-top: 200px;
+  }
 
-.language-switch {
-    display: flex;
-    gap: 6px;
-    margin-left: 15px;
-}
+  .hero h1 {
+    font-size: 26px;
+  }
 
-.language-switch button {
-    background: transparent;
-    border: 1px solid var(--accent-main);
-    color: var(--accent-main);
-    padding: 6px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: var(--transition);
-}
+  section {
+    padding: 80px 16px 60px;
+  }
 
-.language-switch button:hover {
-    background: var(--accent-main);
-    color: var(--text-dark);
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
 }
